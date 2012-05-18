@@ -1,0 +1,4 @@
+%ul
+  - @lists.collection.each do |list|
+    %li= list.name
+    %pre= list.to_yaml
