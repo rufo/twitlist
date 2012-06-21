@@ -1,5 +1,7 @@
 Twitlist::Application.routes.draw do
-  get "lists" => "lists#index"
+  resources :lists do
+    resources :members
+  end
 
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout

@@ -3,11 +3,6 @@ class ListsController < ApplicationController
 
   def index
     @lists = @twitter.lists
-  end
-
-protected
-  def initialize_twitter
-    @twitter = Twitter::Client.new(:oauth_token => current_user.access_token,
-                                   :oauth_token_secret => current_user.access_secret)
+    @users = @twitter.friend_ids.ids.in_groups_of(100, false).map { |group| @twitter.users(group) }.flatten 
   end
 end
