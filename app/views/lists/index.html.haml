@@ -1,13 +1,14 @@
-#users
-  %ul
-    - @users.each do |user|
-      %li= image_tag user.profile_image_url, :title => user.name, :size => "48x48"
-
 #lists
   %ul
     - @lists.collection.each do |list|
       %li
         = list.name
-        %ul
+        %ul{:data => {'list-id' => list.id}}
           - @twitter.list_members(list.id).users.each do |list_member|
-            %li= image_tag list_member.profile_image_url, :title => list_member.name, :size => "48x48"
+            %li{:data => {'user-id' => list_member.id}}= image_tag list_member.profile_image_url, :title => list_member.name, :size => "48x48"
+
+#users
+  %ul
+    - @users.each do |user|
+      %li{:data => {'user-id' => user.id}}= image_tag user.profile_image_url, :title => user.name, :size => "48x48"
+

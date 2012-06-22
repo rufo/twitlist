@@ -10,11 +10,11 @@ class MembersController < ApplicationController
 
   def create
     @twitter.list_add_member(params[:list_id].to_i, params[:id].to_i)
-    head :ok
+    render :json => {:successful => true}
   end
 
   def destroy
     @twitter.list_remove_member(params[:list_id].to_i, params[:id].to_i)
-    head :ok
+    render :json => {:successful => true}
   end
 end
